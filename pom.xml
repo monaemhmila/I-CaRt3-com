@@ -95,6 +95,17 @@
 
     </dependencies>
 
+<<<<<<< HEAD
+=======
+    <distributionManagement>
+        <repository>
+            <id>deploymentRepo</id>
+            <name>Nexus Repository</name>
+        <url>http://192.168.33.10:8081/repository/maven-public/</url>
+        </repository>
+    </distributionManagement>
+
+>>>>>>> ce6a65221d9b7f90ffa35bcd8c01c82e19445802
     <build>
         <plugins>
             <plugin>
