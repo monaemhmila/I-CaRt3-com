@@ -41,7 +41,7 @@ pipeline {
         }*/
       stage('NEXUS') {
             steps {
-                dir('Back') {
+                dir('DevOpsBackend-main') {
                 sh 'mvn clean deploy -DskipTests'
             }
             }
