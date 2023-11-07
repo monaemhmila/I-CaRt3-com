@@ -58,4 +58,12 @@ class StockServiceImplTest {
         assertEquals(allStocks.size(), 1);
 
     }
+
+    @Test
+    @DatabaseSetup("/data-set/stock-data.xml")
+    void retrieveStockNotFound() {
+        assertThrows(NullPointerException.class, () -> {
+            this.stockService.retrieveStock(7L);
+        });
+    }
 }

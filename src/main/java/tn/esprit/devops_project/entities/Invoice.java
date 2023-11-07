@@ -38,9 +38,9 @@ public class Invoice implements Serializable {
 	Boolean archived;
 	@OneToMany(mappedBy = "invoice")
 	Set<InvoiceDetail> invoiceDetails;
-    @ManyToOne
-    @JsonIgnore
-    Supplier supplier;
+	@ManyToOne
+	@JsonIgnore
+	Supplier supplier;
 
-	
+
 }

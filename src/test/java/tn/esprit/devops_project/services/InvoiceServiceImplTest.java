@@ -1,4 +1,4 @@
-package tn.esprit.devops_project.ServiceTest;
+package tn.esprit.devops_project.services;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -15,8 +15,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.repositories.InvoiceRepository;
-import tn.esprit.devops_project.services.InvoiceServiceImpl;
-import tn.esprit.devops_project.services.OperatorServiceImpl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

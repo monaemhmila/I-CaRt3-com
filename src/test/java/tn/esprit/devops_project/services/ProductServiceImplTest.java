@@ -1,4 +1,4 @@
-package tn.esprit.devops_project.ServiceTest;
+package tn.esprit.devops_project.services;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -16,7 +16,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.ProductCategory;
-import tn.esprit.devops_project.services.ProductServiceImpl;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package tn.esprit.devops_project.ServiceTest;
+package tn.esprit.devops_project.services;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -15,7 +15,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.devops_project.entities.Supplier;
 import tn.esprit.devops_project.entities.SupplierCategory;
-import tn.esprit.devops_project.services.SupplierServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
