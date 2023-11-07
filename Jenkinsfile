@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    /* tools{
-        nodejs 'frant'
-    }*/
+     tools{
+        nodejs 'DevOpsfrontend'
+    }
     
    /* environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
@@ -39,17 +39,17 @@ pipeline {
             }
             }
         }*/
-      stage('NEXUS') {
+      /*stage('NEXUS') {
             steps {
                 dir('DevOpsBackend-main') {
                 sh 'mvn clean deploy -DskipTests'
             }
             }
-        }
+        }*/
         
-       /* stage('BBUILD FRONT') {
+        stage('BBUILD FRONT') {
             steps {
-                dir('Frant') {
+                dir('DevOpsfrontend') {
                     script {
                         
                         
@@ -59,7 +59,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
 
       /*  stage('LOGIN DOCKER') {
         steps {
@@ -83,10 +83,10 @@ pipeline {
         }*/
         /*stage('CREATE DOCKER IMAGE FRONT') {
             steps {
-                dir('Frant') {
+                dir('DevOpsfrontend') {
                     script {
-                        sh 'docker build -t ghazi11/frant .'
-                        sh 'docker push ghazi11/frant'
+                        sh 'docker build -t ghazi11/DevOpsfrontend .'
+                        sh 'docker push ghazi11/DevOpsfrontend'
                         
                     }
                 }
