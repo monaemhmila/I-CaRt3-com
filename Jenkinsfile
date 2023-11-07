@@ -18,7 +18,7 @@ pipeline {
         
         stage(' UNIT TESTES AND NOTIF') {
             steps {
-                dir('Back') {
+                dir('DevOpsBackend-main') {
                     script {
                         try {
                             sh 'mvn clean install'
@@ -35,7 +35,7 @@ pipeline {
         
        stage('SONARQUBE') {
             steps {
-                dir('Back') {
+                dir('DevOpsBackend-main') {
                 sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=0000'
             }
             }
