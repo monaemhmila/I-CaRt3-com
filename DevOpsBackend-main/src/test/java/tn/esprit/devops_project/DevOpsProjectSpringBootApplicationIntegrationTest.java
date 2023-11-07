@@ -10,9 +10,7 @@ import org.springframework.test.context.TestPropertySource;
 public class DevOpsProjectSpringBootApplicationIntegrationTest {
 
     @Test
-    public void mainMethodTest() {
-        // Simulate the execution of the main method
-        String[] args = new String[] {}; // You can pass command-line arguments here
-        DevOps_ProjectSpringBootApplication.main(args);
+    public void contextLoads() {
+        // This test method ensures that the Spring application context loads without errors.
     }
 }
