@@ -1,8 +1,8 @@
 pipeline {
     agent any
-     tools{
+    /* tools{
         nodejs 'frant'
-    }
+    }*/
     
    /* environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
