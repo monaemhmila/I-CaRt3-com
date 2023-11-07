@@ -29,7 +29,6 @@ pipeline {
                     }
                 }
             }
-
            
         }
         
@@ -40,13 +39,13 @@ pipeline {
             }
             }
         }
-      /*  stage('NEXUS') {
+      stage('NEXUS') {
             steps {
                 dir('Back') {
                 sh 'mvn clean deploy -DskipTests'
             }
             }
-        }*/
+        }
         
        /* stage('BBUILD FRONT') {
             steps {
@@ -61,6 +60,7 @@ pipeline {
                 }
             }
         }*/
+
       /*  stage('LOGIN DOCKER') {
         steps {
         script {
