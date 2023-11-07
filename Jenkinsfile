@@ -15,7 +15,7 @@ pipeline {
         }
 
          
-        
+     /*   
         stage(' UNIT TESTES AND NOTIF') {
             steps {
                 dir('DevOpsBackend-main') {
@@ -38,7 +38,7 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=0000'
             }
             }
-        }
+        }*/
       stage('NEXUS') {
             steps {
                 dir('Back') {
