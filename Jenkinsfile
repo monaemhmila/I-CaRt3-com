@@ -66,7 +66,7 @@ pipeline {
         steps {
         script {
             
-            sh 'sudo -S docker login -u monaem.hmila@esprit.tn -p 191jmt1346'
+            sh 'sudo -S docker login -u monaem.hmila@esprit.tn -p "191jmt1346"'
                 }
             }
         }    
