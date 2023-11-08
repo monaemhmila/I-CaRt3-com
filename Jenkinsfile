@@ -9,15 +9,15 @@ pipeline {
     }*/
     
     stages {
-       /* stage('GIT') {
+        stage('GIT') {
             steps {
                 checkout scm
             }
-        }*/
+        }
 
          
      
-       /* stage(' UNIT TESTES AND NOTIF') {
+        stage(' UNIT TESTES AND NOTIF') {
             steps {
                 dir('DevOpsBackend-main') {
                     script {
@@ -31,7 +31,7 @@ pipeline {
                 }
             }
            
-        }*/
+        }
         
        /*stage('SONARQUBE') {
             steps {
@@ -48,7 +48,7 @@ pipeline {
             }
         }*/
         
-       /* stage('BBUILD FRONT') {
+        stage('BBUILD FRONT') {
             steps {
                 dir('DevOpsfrontend') {
                     script {
@@ -60,7 +60,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
 
       stage('LOGIN DOCKER') {
         steps {
@@ -72,7 +72,7 @@ pipeline {
         }    
       }
 
-       /* stage('CREATE DOCKER IMAGE BACK') {
+        stage('CREATE DOCKER IMAGE BACK') {
             steps {
                 dir('DevOpsBackend-main') {
                     script {
@@ -92,7 +92,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
         
        /*stage('DEPLOY APP') {
             steps {
