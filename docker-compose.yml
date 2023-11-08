@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: devops
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./DB:/docker-entrypoint-initdb.d/data.sql
+      - /DB:/docker-entrypoint-initdb.d/data.sql
     networks:
       - docker-network
 
@@ -27,7 +27,7 @@ services:
     networks:
       - docker-network
     volumes: 
-      - ./DB:/app/data
+      - /DB:/app/data
 
   frontend:
     image: monaemhamila/devopsfrontend
