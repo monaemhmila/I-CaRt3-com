@@ -4,9 +4,9 @@ pipeline {
         nodejs 'DevOpsfrontend'
     }
     
-   environment {
+   /*environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhubpwd')
-    }
+    }*/
     
     stages {
        /* stage('GIT') {
