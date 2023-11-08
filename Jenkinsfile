@@ -7,6 +7,7 @@ pipeline {
    /* environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }*/
+    
     stages {
         stage('GIT') {
             steps {
@@ -15,7 +16,7 @@ pipeline {
         }
 
          
-     /*   
+     
         stage(' UNIT TESTES AND NOTIF') {
             steps {
                 dir('DevOpsBackend-main') {
@@ -38,7 +39,7 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=0000'
             }
             }
-        }*/
+        }
       /*stage('NEXUS') {
             steps {
                 dir('DevOpsBackend-main') {
@@ -61,26 +62,26 @@ pipeline {
             }
         }
 
-      /*  stage('LOGIN DOCKER') {
+      stage('LOGIN DOCKER') {
         steps {
         script {
-            sh 'echo ghazi1234 | docker login -u ghazi11 --password-stdin'
-                }
+            withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+            sh 'echo monaemhamila | docker login -u monaemhamila -p ${dockerhubpwd}'
+               } }
             }
-        } */     
-        
+        }    
         
 
-        /*stage('CREATE DOCKER IMAGE BACK') {
+        stage('CREATE DOCKER IMAGE BACK') {
             steps {
-                dir('Back') {
+                dir('DevOpsBackend-main') {
                     script {
-                        sh 'docker build -t ghazi11/back1 .'
-                        sh 'docker push ghazi11/back1'
+                        sh 'docker build -t monaemhamila/DevOps_BackEnd .'
+                        sh 'docker push monaemhamila/DevOps_BackEnd'
                     }
                 }
             }
-        }*/
+        }
         /*stage('CREATE DOCKER IMAGE FRONT') {
             steps {
                 dir('DevOpsfrontend') {
