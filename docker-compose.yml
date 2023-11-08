@@ -36,7 +36,7 @@ services:
     networks:
       - docker-network
     ports:
-      - "80:80"  # Map port 80 on the host to port 80 on the container
+      - "8088:80"  # Map port 80 on the host to port 80 on the container
 
 networks:
   docker-network:
