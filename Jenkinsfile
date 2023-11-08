@@ -4,9 +4,9 @@ pipeline {
         nodejs 'DevOpsfrontend'
     }
     
-   /* environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    }*/
+   environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhubpwd')
+    }
     
     stages {
        /* stage('GIT') {
@@ -65,9 +65,8 @@ pipeline {
       stage('LOGIN DOCKER') {
         steps {
         script {
-            withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-            sh 'docker login -u monaem.hmila@esprit.tn -p ${dockerhubpwd}'
-               } }
+            sh 'echo 191jmt1346 | docker login -u monaemhamila --password-stdin'
+                }
             }
         }    
         
