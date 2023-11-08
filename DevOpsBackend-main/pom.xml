@@ -140,6 +140,7 @@
                 </executions>
             </plugin>
         </plugins>
+        <finalName>DevOps_BackEnd</finalName>
     </build>
 
 </project>
