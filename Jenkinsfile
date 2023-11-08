@@ -76,8 +76,8 @@ pipeline {
             steps {
                 dir('DevOpsBackend-main') {
                     script {
-                        sh 'docker build -t monaemhamila/DevOps_BackEnd .'
-                        sh 'docker push monaemhamila/DevOps_BackEnd'
+                        sh 'docker build -t monaemhamila/devopsbackEnd .'
+                        sh 'docker push monaemhamila/devopsbackEnd'
                     }
                 }
             }
@@ -86,8 +86,8 @@ pipeline {
             steps {
                 dir('DevOpsfrontend') {
                     script {
-                        sh 'docker build -t monaemhamila/DevOpsfrontend .'
-                        sh 'docker push monaemhamila/DevOpsfrontend'
+                        sh 'docker build -t monaemhamila/devopsfrontend .'
+                        sh 'docker push monaemhamila/devopsfrontend'
                         
                     }
                 }
