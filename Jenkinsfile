@@ -65,8 +65,9 @@ pipeline {
       stage('LOGIN DOCKER') {
         steps {
         script {
-            sh 'echo 191jmt1346 |sudo -S docker login -u monaem.hmila@esprit.tn --password-stdin'
-                }
+            withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+            sh 'sudo -s docker login -u monaem.hmila@esprit.tn -p ${dockerhubpwd}'
+               } }
             }
         }    
         
