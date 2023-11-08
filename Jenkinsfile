@@ -65,7 +65,7 @@ pipeline {
       stage('LOGIN DOCKER') {
         steps {
         script {
-            sh 'echo 191jmt1346 | docker login -u monaem.hmila@esprit.tn --password-stdin'
+            sh 'docker login -u monaem.hmila@esprit.tn --password-stdin'
                 }
             }
         }     
