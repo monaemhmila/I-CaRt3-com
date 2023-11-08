@@ -66,7 +66,7 @@ pipeline {
         steps {
         script {
             withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhub-pwd')]) {
-            sh 'docker login -u monaem.hmila@esprit.tn -p ${dockerhub-pwd}'
+            sh 'docker login -u monaemhamila -p ${dockerhub-pwd}'
                 }
             }
         }    
