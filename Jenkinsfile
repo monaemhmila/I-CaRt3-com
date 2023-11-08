@@ -82,17 +82,17 @@ pipeline {
                 }
             }
         }
-        /*stage('CREATE DOCKER IMAGE FRONT') {
+        stage('CREATE DOCKER IMAGE FRONT') {
             steps {
                 dir('DevOpsfrontend') {
                     script {
-                        sh 'docker build -t ghazi11/DevOpsfrontend .'
-                        sh 'docker push ghazi11/DevOpsfrontend'
+                        sh 'docker build -t monaemhamila/DevOpsfrontend .'
+                        sh 'docker push monaemhamila/DevOpsfrontend'
                         
                     }
                 }
             }
-        }*/
+        }
         
        /*stage('DEPLOY APP') {
             steps {
