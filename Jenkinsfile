@@ -4,9 +4,9 @@ pipeline {
         nodejs 'DevOpsfrontend'
     }
     
-   /*environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhubpwd')
-    }*/
+   environment {
+    DOCKERHUB_CREDENTIALS = credentials('191jmt1346')
+    }
     
     stages {
        /* stage('GIT') {
@@ -65,11 +65,10 @@ pipeline {
       stage('LOGIN DOCKER') {
         steps {
         script {
-            
-            sh 'sudo -S docker login -u monaem.hmila@esprit.tn -p "191jmt1346"'
+            sh 'echo 191jmt1346 | docker login -u monaem.hmila@esprit.tn --password-stdin'
                 }
             }
-        }    
+        }     
         
 
        /* stage('CREATE DOCKER IMAGE BACK') {
