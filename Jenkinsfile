@@ -70,7 +70,7 @@ pipeline {
                 }
             }
         }    
-        
+      }
 
        /* stage('CREATE DOCKER IMAGE BACK') {
             steps {
