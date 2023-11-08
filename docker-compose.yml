@@ -1,0 +1,42 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysqldb
+    ports:
+      - "3306:3306"  # Map host port 3306 to container port 3306
+    environment:
+      MYSQL_DATABASE: devops
+      MYSQL_ROOT_PASSWORD: 
+    volumes:
+      - ./DB:/docker-entrypoint-initdb.d/data.sql
+    networks:
+      - docker-network
+
+  spring:
+    image: monaemhamila/devopsbackend
+    container_name: test_backend
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 
+    depends_on:
+      - mysql
+    networks:
+      - docker-network
+    volumes: 
+      - ./DB:/app/data
+
+  frontend:
+    image: monaemhamila/devopsfrontend
+    depends_on:
+      - spring
+    networks:
+      - docker-network
+    ports:
+      - "80:80"  # Map port 80 on the host to port 80 on the container
+
+networks:
+  docker-network:

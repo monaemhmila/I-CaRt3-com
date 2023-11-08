@@ -94,7 +94,7 @@ pipeline {
             }
         }
         
-       /*stage('DEPLOY APP') {
+       stage('DEPLOY APP') {
             steps {
                 
                 script {
@@ -103,7 +103,7 @@ pipeline {
                 }
                 
             }
-        }*/
+        }
 }
 }
 
