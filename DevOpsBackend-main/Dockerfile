@@ -1,7 +1,7 @@
 
 FROM maven:3.8.3-openjdk-17 AS build
 
-WORKDIR /Back
+WORKDIR /DevOps_Project
 COPY src /home/app/src
 COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
