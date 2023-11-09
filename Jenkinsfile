@@ -48,19 +48,18 @@ pipeline {
             }
         }*/
         
-        stage('BBUILD FRONT') {
-            steps {
-                dir('DevOpsfrontend') {
-                    script {
-                        
-                        
-                        sh 'npm install -g @angular/cli'
-                        sh  'npm install' 
-                        sh 'ng build'      
+            stage('BBUILD FRONT') {
+                steps {
+                    dir('DevOpsfrontend') {
+                        script {
+                            
+                            sh 'npm install -g npm@latest'
+                            sh 'npm install --force'
+                            sh 'npm run build'      
+                        }
                     }
                 }
             }
-        }
 
       stage('LOGIN DOCKER') {
         steps {
