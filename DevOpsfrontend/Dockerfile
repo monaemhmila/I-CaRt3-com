@@ -7,9 +7,6 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
-
 # Copy the Angular application files (assuming dist is already generated)
 COPY dist/ .
 
@@ -17,4 +14,4 @@ COPY dist/ .
 EXPOSE 4200
 
 # Start http-server when the container starts
-CMD ["npx", "http-server", "-p", "4200"]
+CMD ["npx", "http-server", "dist", "-p", "4200"]
