@@ -2,10 +2,7 @@
 FROM node:21 as build
 
 # Set the working directory
-WORKDIR /DevOpsfrontend
-
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
+WORKDIR /app
 
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
@@ -15,13 +12,11 @@ RUN npm install -g @angular/cli
 COPY . .
 
 # Build the Angular app
-RUN npm run build
+RUN npm run build 
 
 # Use a smaller image as the final base image
-FROM nginx:alpine
+FROM httpd:alpine3.15
 
+WORKDIR /usr/local/apache2/htdocs
 # Copy the built app from the previous stage
-COPY --from=build /app/dist/DevOpsfrontend /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 8088
+COPY --from=angular /app/dist/summer-workshop-angular .
