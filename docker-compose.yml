@@ -35,8 +35,6 @@ services:
       - spring
     networks:
       - internalnet
-    expose:
-      - 8088
     ports:
       - "8088:8088"  # Map port 80 on the host to port 80 on the container test 
 
