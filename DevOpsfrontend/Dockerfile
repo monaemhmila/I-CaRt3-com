@@ -7,10 +7,8 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Copy the rest of the application code
-COPY . .
-
-
+# Copy the Angular application files (assuming dist is already generated)
+COPY dist/ .
 
 # Expose the port that http-server will use
 EXPOSE 4200
