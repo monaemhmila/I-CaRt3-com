@@ -25,4 +25,5 @@ RUN npm run build
 FROM nginx:stable
 
 # Copy the built app from the previous stage
-COPY --from=node /app/dist/summer-workshop-angular/ /usr/share/ngix/html
+COPY --from=build /app/dist/summer-workshop-angular/ /usr/share/ngix/html
+EXPOSE 88
