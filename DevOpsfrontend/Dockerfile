@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the Angular application files (assuming dist is already generated)
-COPY dist/ /app/
+COPY dist/ .
 
 # Expose the port that http-server will use
 EXPOSE 4200
