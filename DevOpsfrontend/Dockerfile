@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image
-FROM node:21 as build
+FROM node:latest as node 
 
 # Set the working directory
 WORKDIR /app
@@ -12,11 +12,10 @@ RUN npm install -g @angular/cli
 COPY . .
 
 # Build the Angular app
-RUN npm run build 
+RUN npm run build --prod
 
 # Use a smaller image as the final base image
-FROM httpd:alpine3.15
+FROM nginx:alpine
 
-WORKDIR /usr/local/apache2/htdocs
 # Copy the built app from the previous stage
-COPY --from=angular /app/dist/summer-workshop-angular .
+COPY --from=node /app/dist/summer-workshop-angular /usr/share/ngix/html
