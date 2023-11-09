@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Copy the Angular application files (assuming dist is already generated)
-COPY dist/ .
+COPY dist/* /app/
 
 # Expose the port that http-server will use
 EXPOSE 4200
