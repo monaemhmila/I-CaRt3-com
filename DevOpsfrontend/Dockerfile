@@ -14,4 +14,4 @@ COPY dist/* /app/
 EXPOSE 4200
 
 # Start http-server when the container starts
-CMD ["npx", "http-server", "dist", "-p", "4200"]
+CMD ["npx", "http-server", "/app/dist", "-p", "4200"]
