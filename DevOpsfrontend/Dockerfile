@@ -10,8 +10,6 @@ COPY package*.json ./
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
 
-# Install project dependencies
-RUN npm install
 
 # Copy the rest of the application code from your project directory
 COPY . .
