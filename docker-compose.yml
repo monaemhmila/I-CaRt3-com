@@ -36,7 +36,7 @@ services:
     networks:
       - internalnet
     ports:
-      - "8088:8088"  # Map port 80 on the host to port 80 on the container test 
+      - "4200:4200"  # Map port 80 on the host to port 80 on the container test 
 
 networks:
   internalnet:
