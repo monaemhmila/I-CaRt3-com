@@ -12,8 +12,7 @@ RUN npm install -g @angular/cli
 # Copy the rest of the application code from your project directory
 COPY package*.json ./
 
-# Install Angular CLI globally
-RUN npm install 
+
 
 RUN npx ngcc --properties es2023 browser module main --first-only --create-ivy-entry-points
 
