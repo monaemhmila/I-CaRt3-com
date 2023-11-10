@@ -20,4 +20,4 @@ EXPOSE 4200
 RUN npm install -g http-server
 
 # Start the http-server to serve the Angular app
-CMD ["http-server", "dist"]
+CMD ["http-server", "dist", "-p", "4200"]
