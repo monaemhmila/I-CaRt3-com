@@ -10,14 +10,8 @@ COPY package*.json ./
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
 
-# Install app dependencies
-RUN npm install --force
-
 # Copy the application files to the container
 COPY . .
-
-# Build the Angular app
-RUN npm run build
 
 # Expose the port the app runs on
 EXPOSE 4200
