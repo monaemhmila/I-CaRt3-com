@@ -55,7 +55,6 @@ pipeline {
                             
                             sh 'npm install -g npm@latest'
                             sh 'npm install --force'
-                            sh 'rm dist'
                             sh 'npm run build'      
                         }
                     }
