@@ -8,4 +8,4 @@ WORKDIR /app
 EXPOSE 4200
 
 # Command to run http-server on the dist directory
-CMD ["http-server", "dist", "-p", "8080"]
+CMD ["http-server", "dist", "-p", "4200"]
