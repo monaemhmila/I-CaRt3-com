@@ -1,17 +1,11 @@
-# Use an official Node.js runtime as a base image
+# Use a small Node.js base image
 FROM node:14-alpine
 
-# Set the working directory inside the container
+# Set the working directory to your project directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-
-# Copy the Angular application files (assuming dist is already generated)
-COPY dist/* /app/
-
-# Expose the port that http-server will use
+# Expose the port that http-server will run on
 EXPOSE 4200
 
-# Start http-server when the container starts
-CMD ["npx", "http-server", "/app/dist", "-p", "4200"]
+# Command to run http-server on the dist directory
+CMD ["http-server", "dist", "-p", "8080"]
