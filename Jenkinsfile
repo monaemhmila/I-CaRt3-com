@@ -30,23 +30,51 @@ pipeline {
                     }
                 }
             }
-           
+           post {
+                success {
+                    script {
+                        def subject = "TESTES"
+                        def body = "SUCCESS"
+                        def to = 'monemehamila@gmail.com'
+
+                        mail(
+                            subject: subject,
+                            body: body,
+                            to: to,
+                        )
+                    }
+                }
+                failure {
+                    script {
+                        def subject = "Build Failure - ${currentBuild.fullDisplayName}"
+                        def body = "The build has failed "
+                        def to = 'monemehamila@gmail.com'
+
+                        mail(
+                            subject: subject,
+                            body: body,
+                            to: to,
+                        )
+                    }
+                }
+                
+            }
         }
         
-       /*stage('SONARQUBE') {
+       stage('SONARQUBE') {
             steps {
                 dir('DevOpsBackend-main') {
                 sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=0000'
             }
             }
-        }*/
-      /*stage('NEXUS') {
+        }
+      stage('NEXUS') {
             steps {
                 dir('DevOpsBackend-main') {
                 sh 'mvn clean deploy -DskipTests'
             }
             }
-        }*/
+        }
         
             stage('BBUILD FRONT') {
                 steps {
