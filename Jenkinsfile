@@ -19,6 +19,8 @@ pipeline {
                     script {
                         try {
                             sh 'mvn clean install'
+                            sh 'mvn test'
+
                         } catch (Exception e) {
                             currentBuild.result = 'FAILURE'
                             error("Build failed: ${e.message}")
