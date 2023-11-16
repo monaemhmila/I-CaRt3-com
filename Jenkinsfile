@@ -66,13 +66,13 @@ pipeline {
             }
             }
         }
-      stage('NEXUS') {
+      /*stage('NEXUS') {
             steps {
                 dir('DevOpsBackend-main') {
                 sh 'mvn clean deploy -DskipTests'
             }
             }
-        }
+        }*/
         
             stage('BBUILD FRONT') {
                 steps {
