@@ -46,7 +46,7 @@ services:
     volumes:
       - ./prometheus:/etc/prometheus
     command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--config.file=/etc/prometheus.yml"
     networks:
       - internalnet
     depends_on:
