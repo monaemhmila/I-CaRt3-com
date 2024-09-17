@@ -8,7 +8,7 @@ const common = require('./webpack.common');
 const CURRENT_WORKING_DIR = process.cwd();
 
 const config = {
-  mode: 'production',
+  mode: 'development',
   output: {
     path: path.join(CURRENT_WORKING_DIR, '/dist'),
     filename: '[name].js',
@@ -74,9 +74,8 @@ const config = {
     compress: true,
     hot: true,
     disableHostCheck: true,
-    historyApiFallback: true,
+    historyApiFallback: true
   },
-  
   devtool: 'eval-source-map'
 };
 

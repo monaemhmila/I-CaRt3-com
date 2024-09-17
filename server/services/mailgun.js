@@ -1,9 +1,9 @@
 const Mailgun = require('mailgun-js');
 
 const template = require('../config/template');
-const key = require('../config/keys');
+const keys = require('../config/keys');
 
-//const { key, domain, sender } = keys.mailgun;
+const { key, domain, sender } = keys.mailgun;
 
 class MailgunService {
   init() {
@@ -25,7 +25,7 @@ exports.sendEmail = async (email, type, host, data) => {
     const message = prepareTemplate(type, host, data);
 
     const config = {
-      from: `I-Cart! <${sender}>`,
+      from: `MERN Store! <${sender}>`,
       to: email,
       subject: message.subject,
       text: message.text

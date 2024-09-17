@@ -1,5 +1,6 @@
-const path = require('path');
+require('dotenv').config();
 const webpack = require('webpack');
+const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,15 +11,15 @@ const webpackMerge = require('webpack-merge');
 const common = require('./webpack.common');
 
 const CURRENT_WORKING_DIR = process.cwd();
-const NODE_ENV = process.env.NODE_ENV ;
-const API_URL = process.env.API_URL ; // Ensure this is correct
+const NODE_ENV = process.env.NODE_ENV;
+const API_URL = process.env.API_URL;
 
 const config = {
   mode: 'production',
   output: {
     path: path.join(CURRENT_WORKING_DIR, '/dist'),
-    filename: 'js/[name].[contenthash].js',
-    publicPath: '/' 
+    filename: 'js/[name].[hash].js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -26,9 +27,18 @@ const config = {
         test: /\.(scss|sass|css)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [require('cssnano'), require('autoprefixer')]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
@@ -38,19 +48,21 @@ const config = {
             loader: 'file-loader',
             options: {
               outputPath: 'images',
-              name: '[name].[contenthash].[ext]'
+              publicPath: '../images',
+              name: '[name].[hash].[ext]'
             }
           }
         ]
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)$/,
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
             options: {
               outputPath: 'fonts',
-              name: '[name].[contenthash].[ext]'
+              publicPath: '../fonts',
+              name: '[name].[hash].[ext]'
             }
           }
         ]
@@ -64,6 +76,10 @@ const config = {
   },
   optimization: {
     minimize: true,
+    nodeEnv: 'production',
+    sideEffects: true,
+    concatenateModules: true,
+    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         vendors: {
@@ -82,9 +98,16 @@ const config = {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          compress: { comparisons: false },
+          warnings: false,
+          compress: {
+            comparisons: false
+          },
+          parse: {},
           mangle: true,
-          output: { comments: false }
+          output: {
+            comments: false,
+            ascii_only: true
+          }
         }
       })
     ]
@@ -98,29 +121,53 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(CURRENT_WORKING_DIR, 'public/index.html'),
+      inject: true,
       minify: {
         removeComments: true,
-        collapseWhitespace: true
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
       }
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css'
+      filename: 'css/[name].[hash].css'
     }),
     new WebpackPwaManifest({
-      name: 'ICart',
-      short_name: 'ICart',
-      description: 'ICart!',
+      name: 'MERN Store',
+      short_name: 'MERNStore',
+      description: 'MERN Store!',
       background_color: '#fff',
       theme_color: '#4a68aa',
+      inject: true,
+      ios: true,
       icons: [
         {
           src: path.resolve('public/images/pwa.png'),
-          sizes: [72, 96, 128, 144, 192, 384, 512],
-          destination: 'images'
+          destination: 'images',
+          sizes: [72, 96, 128, 144, 192, 384, 512]
+        },
+        {
+          src: path.resolve('public/images/pwa.png'),
+          sizes: [120, 152, 167, 180],
+          destination: 'images',
+          ios: true
         }
       ]
     }),
-    new OptimizeCssAssetsPlugin()
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        preset: ['default', { discardComments: { removeAll: true } }]
+      },
+      canPrint: true
+    })
   ]
 };
 
