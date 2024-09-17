@@ -49,39 +49,44 @@ const googleAuth = async () => {
           clientSecret: google.clientSecret,
           callbackURL: google.callbackURL
         },
-        (accessToken, refreshToken, profile, done) => {
-          User.findOne({ email: profile.email })
-            .then(user => {
-              if (user) {
-                return done(null, user);
-              }
-
-              const name = profile.displayName.split(' ');
-
-              const newUser = new User({
-                provider: EMAIL_PROVIDER.Google,
-                googleId: profile.id,
-                email: profile.email,
-                firstName: name[0],
-                lastName: name[1],
-                avatar: profile.picture,
-                password: null
-              });
-
-              newUser.save((err, user) => {
-                if (err) {
-                  return done(err, false);
-                }
-
-                return done(null, user);
-              });
-            })
-            .catch(err => {
-              return done(err, false);
+        async (accessToken, refreshToken, profile, done) => {
+          try {
+            // Check if the user already exists with the same email
+            let user = await User.findOne({ email: profile.email });
+    
+            // If the user exists but without googleId, link their account to Google
+            if (user && !user.googleId) {
+              user.googleId = profile.id;
+              await user.save();
+              return done(null, user);
+            }
+    
+            // If the user already exists with googleId, just log them in
+            if (user) {
+              return done(null, user);
+            }
+    
+            // If the user doesn't exist, create a new one
+            const name = profile.displayName.split(' ');
+            const newUser = new User({
+              provider: EMAIL_PROVIDER.Google,
+              googleId: profile.id,
+              email: profile.email,
+              firstName: name[0],
+              lastName: name[1],
+              avatar: profile.picture,
+              password: null
             });
+    
+            await newUser.save();
+            return done(null, newUser);
+          } catch (err) {
+            return done(err, false);
+          }
         }
       )
     );
+    
   } catch (error) {
     console.log('Missing google keys');
   }
